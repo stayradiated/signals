@@ -6,7 +6,7 @@ if ('smokesignals' in global) {
     old = global.smokesignals;
 }
 
-require('./smokesignals');
+require('./smokesignals.unminified');
 
 module.exports = smokesignals;
 
