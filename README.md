@@ -44,53 +44,54 @@ Using
 
 Make any object an event emitter:
 
-    var jack = {};
-    smokesignals.convert(jack);
+    var jill = {};
+    smokesignals.convert(jill);
 
 Or if you prefer constructors:
 
     function Person() {
         smokesignals.convert(this);
     }
-    var jack = new Person();
+    var jill = new Person();
 
 Now you can listen for events:
 
     function listener(name) {
-        window.alert('hello ' + name + '!');
+        window.alert('Hello ' + name + '!');
     }
-    jack.on('say hello', listener);
+    jill.on('say hello', listener);
 
 And emit events:
 
-    jack.emit('say hello', 'jill');
+    jill.emit('say hello', 'Jack');
+    // alerts: "Hello Jack!"
 
 And remove a listener:
 
-    jack.off('say hello', listener);
+    jill.off('say hello', listener);
 
 Or if you only want to listen for an event once:
 
-    jack.once('another event', function() {
+    jill.once('another event', function() {
         window.alert("I'll only be called once!");
     });
-    jack.emit('another event');
+    jill.emit('another event');
 
 Or remove all listeners for an event:
 
-    jack.off('say hello');
+    jill.off('say hello');
 
 Or if you want to remove ALL listeners:
 
     // just reconvert the object...
-    smokesignals.convert(jack);
+    smokesignals.convert(jill);
 
 That's it! One global object (`smokesignals`) and when used it adds 4 methods to
 your objects (`on`, `once`, `off` and `emit`).
 
 By the way, all methods are chainable:
 
-    var jack = smokesignals.convert({})
+    var jill = smokesignals.convert({})
       .on('event one', function() { ... })
       .on('event two', function() { ... })
       .emit('event one')
