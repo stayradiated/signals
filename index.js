@@ -1,7 +1,7 @@
 // in a few cases we've chosen optimizing script length over efficiency of code.
 // I think that is the right choice for this library.  If you're adding and
 // triggering A LOT of events, you might want to use a different library.
-smokesignals = {
+var smokesignals = {
     convert: function(obj, handlers) {
         // we store the list of handlers as a local variable inside the scope
         // so that we don't have to add random properties to the object we are
