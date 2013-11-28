@@ -1,5 +1,9 @@
-Smoke Signals
-=============
+Signals
+=======
+
+> This is a fork of [Smoke
+> Signals](https://bitbucket.org/bentomas/smokesignals.js/) by [Benjamin Thomas](https://bitbucket.org/bentomas)
+
 
 Really, really lightweight event emitting for Node and the browser.
 
