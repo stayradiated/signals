@@ -1,22 +1,32 @@
 var assert = require('assert');
 
-console.log('test do not pollute node globals when requiring');
-    var globalKeys = [];
-    for (var key in global) {
+describe('Signals =>', function () {
+
+  var emitter, globalKeys, Signals;
+
+  it('test do not pollute node globals when requiring', function () {
+
+    var key;
+    globalKeys = [];
+    for (key in global) {
         globalKeys.push(key);
     }
 
-    var smokesignals = require('./index');
+    Signals = require('./index');
 
-    for (var key in global) {
+    for (key in global) {
         assert.ok(globalKeys.indexOf(key) > -1);
     }
 
     // emitter for tests
-    var emitter = {};
-    assert.strictEqual(emitter, smokesignals.convert(emitter));
+    emitter = {};
+    Signals.convert(emitter);
 
-console.log('emiting one event listener');
+  });
+
+
+  it('emiting one event listener', function () {
+
     var event1count = 0;
     var event1handler = function() { event1count++; };
     assert.strictEqual(emitter, emitter.on('event1', event1handler));
@@ -31,7 +41,10 @@ console.log('emiting one event listener');
     assert.strictEqual(emitter, emitter.emit('event1'));
     assert.equal(event1count, 2);
 
-console.log('emiting three event listeners');
+  });
+
+  it('emiting three event listeners', function () {
+
     var event2count1 = 0;
     var event2count2 = 0;
     var event2count3 = 0;
@@ -70,7 +83,9 @@ console.log('emiting three event listeners');
     assert.equal(event2count2, 4);
     assert.equal(event2count3, 3);
 
-console.log('emiting one event listener and passing args to it');
+  });
+
+  it('emiting one event listener and passing args to it', function () {
     var event3count = 0;
     var event3handler = function(arg1) { assert.equal(arg1, 'one'); event3count++; };
     assert.strictEqual(emitter, emitter.on('event3', event3handler));
@@ -83,7 +98,9 @@ console.log('emiting one event listener and passing args to it');
     assert.strictEqual(emitter, emitter.emit('event3'));
     },'AssertionError: "undefined" == "one"');
 
-console.log('once function');
+  });
+
+  it('once function', function () {
     var event4count = 0;
     var event4handler = function() { event4count++; };
     assert.strictEqual(emitter, emitter.once('event4', event4handler));
@@ -94,7 +111,9 @@ console.log('once function');
     assert.strictEqual(emitter, emitter.emit('event4'));
     assert.equal(event4count, 1);
 
-console.log('removing all listeners for an event');
+  });
+  
+  it('removing all listeners for an event', function () {
     var event5count1 = 0;
     var event5count2 = 0;
     var event5count3 = 0;
@@ -116,7 +135,9 @@ console.log('removing all listeners for an event');
     assert.equal(event5count2, 1);
     assert.equal(event5count3, 1);
 
-console.log('resetting');
+  });
+  
+  it('resetting', function () {
     var event6count = 0;
     var event7count = 0;
     var event8count = 0;
@@ -142,21 +163,19 @@ console.log('resetting');
     assert.equal(event7count, 1);
     assert.equal(event8count, 1);
 
-    assert.strictEqual(emitter, smokesignals.convert(emitter));
+    assert.strictEqual(emitter, Signals.convert(emitter));
     assert.strictEqual(emitter, emitter.emit('event6'));
     assert.strictEqual(emitter, emitter.emit('event7'));
     assert.strictEqual(emitter, emitter.emit('event8'));
     assert.equal(event6count, 1);
     assert.equal(event7count, 1);
     assert.equal(event8count, 1);
-
-console.log('constructor paradigm');
+  });
+  
+  it('constructor paradigm', function () {
     var event9count = 0;
 
-    function Obj() {
-    smokesignals.convert(this);
-    }
-    var obj = new Obj();
+    var obj = new Signals();
 
     var event9handler = function() { event9count++; };
     assert.strictEqual(obj, obj.on('event9', event9handler));
@@ -171,7 +190,14 @@ console.log('constructor paradigm');
     assert.strictEqual(obj, obj.emit('event9'));
     assert.equal(event9count, 2);
 
-console.log('test do not pollute node globals after using');
+  });
+  
+  it('test do not pollute node globals after using', function () {
     for (var key in global) {
         assert.ok(globalKeys.indexOf(key) > -1, key + ' found in global namespace');
     }
+
+  });
+
+
+});

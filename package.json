@@ -1,14 +1,14 @@
 {
   "name": "signals",
-  "description": "Really, really lightweight event emitting",
-  "version": "0.0.7",
-  "author": "Benjamin Thomas <benjamin@benjaminthomas.org> (http://benjaminthomas.org)",
+  "description": "Lightweight event emitter",
+  "version": "0.0.8",
+  "author": "George Czabania <george@czabania.com>",
   "bugs": {
-    "url": "https://github.com/bentomas/smokesignals/issues",
-    "email": "benjamin@benjaminthomas.org"
+    "url": "https://github.com/stayradiated/signals/issues",
+    "email": "george@czabania.com"
   },
   "keywords": ["events", "emitter", "trigger"],
   "main": "./index.js",
-  "repository": {"type": "git", "url": "git://github.com/bentomas/smokesignals.git"},
-  "scripts": { "test": "node ./test.js" }
+  "repository": {"type": "git", "url": "git://github.com/stayradiated/signals.git"},
+  "scripts": { "test": "mocha ./test.js" }
 }
