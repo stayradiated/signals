@@ -1,7 +1,7 @@
 {
   "name": "signals",
   "description": "Lightweight event emitter",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "George Czabania <george@czabania.com>",
   "bugs": {
     "url": "https://github.com/stayradiated/signals/issues",
