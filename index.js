@@ -56,7 +56,7 @@
 
   // remove a listener
   Signals.prototype.off = function(eventName, handler) {
-    var i, item, list, len;
+    var i, item, list, len;
     list = this.handlers[eventName];
 
     for(i = list.length - 1; i >= 0; i--) {
@@ -87,6 +87,10 @@
     return this;
   };
 
-  module.exports = Signals;
+  if (typeof module !== 'undefined') {
+    module.exports = Signals;
+  } else if (typeof window !== 'undefined') {
+    window.Signals = Signals;
+  }
 
 }());

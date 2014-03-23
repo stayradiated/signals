@@ -10,5 +10,5 @@
   "keywords": ["events", "emitter", "trigger"],
   "main": "./index.js",
   "repository": {"type": "git", "url": "git://github.com/stayradiated/signals.git"},
-  "scripts": { "test": "mocha ./test.js" }
+  "scripts": { "test": "mocha -R spec ./test.js" }
 }
